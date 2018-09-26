@@ -22,8 +22,7 @@ export class AdminRecipeComponent implements OnInit {
    
     addInstruction(){        
       this.recipe.setInstruction(this.recipeInstruction)
-      this.recipeInstruction=''
-    }
+      this.recipeInstruction=''}
     nameStatus:boolean;
      checkRecipeName():boolean{
        return this.nameStatus?!this.recipeName :!this.recipeName
@@ -31,9 +30,17 @@ export class AdminRecipeComponent implements OnInit {
 
       instructionStatus:boolean;
      checkInstruction():boolean{       
-       if(this.recipe._instructions.length==0)
-       return true;
-     }
+       if(this.recipe._instructions.length>=0)
+       return true;     }
+
+     descriptionStatus:boolean;
+     checkedescription():boolean{    
+         return this.description?!this.description :!this.description }
+         imageLinkStatus:boolean;
+        checkIimageLink():boolean{    
+             return this.description?!this.imageLink :!this.imageLink }
+
+
      test2(){
       
         console.log(this.recipeName)
@@ -66,7 +73,6 @@ export class AdminRecipeComponent implements OnInit {
 
        // console.log(this.reci)
       });
-
   }
 
 
