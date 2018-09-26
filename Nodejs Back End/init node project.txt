@@ -1,0 +1,3 @@
+Create dummy directory
+npm init -y
+npm install systemjs-nodelibs

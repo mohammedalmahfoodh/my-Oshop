@@ -1,0 +1,41 @@
+<button id="border" class="btn btn-block"><h2>More recipes</h2></button>
+<div class="row mt-3">
+    <div class="col-sm-2 ">
+        <div class="list-group">
+            <li id="categories" class="list-group-item list-group-item-action" ><h2>All Categories {{allCategories}} </h2></li>
+            <a routerLink="/recipeMiddag" class="list-group-item list-group-item-action btn">
+               <h3>  {{recipesCategories[0] }}   {{categoriesMiddag}} </h3> 
+            </a>
+            <a routerLink="/recipeEfterret" class="list-group-item list-group-item-action btn">
+               <h3> {{recipesCategories[1] }}  {{categoriesEfterrett}}  </h3>    
+            </a>
+            <a routerLink="/Mellanmal" class="list-group-item list-group-item-action btn">
+               <h3> {{recipesCategories[2]  }}  {{categoriesMellanmal}}  </h3>  
+            </a>
+        </div>
+        
+    </div>
+    <div class="col container-fluid ">
+        <div class="row">
+            <ng-container *ngFor="let item of recipes;let i=index">
+                <div class="col">
+                    <a href="#" (click)="sendToDisplay(item)" routerLink="displayRecipy">
+                        <div class="card" style="width: 11rem;">
+                            <img class="card-img-top" [src]="item._urlToImg" alt="Card image cap">
+                            <div class="card-body">
+                                <h3 class="card-title">{{item._name}}</h3>
+                                 <h4 class="card-title">{{item._category}}</h4>
+                                <a href="#" class="btn btn-primary">more information</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div *ngIf="(i+1)%4==0" class="w-100"></div>
+            </ng-container>
+
+
+        </div>
+
+    </div>
+
+</div>

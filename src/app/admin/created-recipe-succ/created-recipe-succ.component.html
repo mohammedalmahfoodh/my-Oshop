@@ -1,0 +1,25 @@
+
+          <div id="cardd" class="center d-flex justify-content-center ">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" [src]="recipe2._urlToImg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{recipe2._name}}</h5>
+                <p class="card-text">{{recipe2._desicription}}</p>
+                <a  class="btn btn-primary" (click)="sendToDisplay(recipe2)"  routerLink="/displayRecipy" >Check all info about the recipe</a>
+              </div>
+            </div>
+          </div>
+
+ 
+         
+   
+         
+         
+         <button class="btn btn-primary btn-lg btn-block mt-5" routerLink="/admin-recipe">Back to Admin page for adding another recipe</button>
+     
+      
+
+    
+
+
+ 

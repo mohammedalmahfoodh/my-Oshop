@@ -1,0 +1,130 @@
+<div class="container mt-5">
+  
+  <div class="row">
+    <div class="col-sm-6">
+      <h1>{{recipeTitle}}</h1>
+      <h4>Description</h4>
+      <h6>{{description}}</h6>
+        
+<br>
+<br>
+      <div class="row">
+          <h3>Näringsinnehåll for {{recipeTitle}}</h3>
+          <table class="table table-hover table-primary table-sm " >
+              
+  
+              <th scope="col">enkelomättade fettsyror</th>
+              <th scope="col">fleromättade fettsyror</th>
+              <th scope="col">mättade fettsyror</th>
+              <th scope="col">Protein</th>
+              <th scope="col">Kolhydrater</th>
+              <th scope="col">Salt</th>
+              <th scope="col">Energi (kcal)</th>
+  
+              <tbody>
+                <td *ngFor="let item of tempNaringsvard">{{item.Varde * person |number}}</td>
+              </tbody>
+            </table>
+
+            <div class="input-group input-group-sm mb-3">
+              <p><b>OBS</b>  Tabellen ovan visar näringsvärdena för en person, du kan ge mer än en för att se resultatet</p>
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Persons</span>
+                </div>
+                <input type="text" [(ngModel)]="person" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-6">
+      <img class="img-fluid rounded" [src]="imageLink" alt="Responsive image">
+    </div>
+
+  </div>
+
+
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Instructions</h3>
+        <ul class="list-group" *ngFor="let instruction  of instructions">
+          <li class="list-group-item ">{{instruction}}</li>
+
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3>Ingredieants</h3>
+
+        <ul>
+          <li>
+            <h6>Ingredient Name &nbsp;&nbsp; units(st) &nbsp;&nbsp; unit Equivalent In Gram(g) </h6>
+          </li>
+        </ul>
+        <ul class="list-group" *ngFor="let ingredient of recipe2._ingredients">
+          <li class="list-group-item ">
+            {{ingredient.Namn}} &nbsp;&nbsp; {{ingredient.unit}}(st) &nbsp;&nbsp;
+            {{ingredient.unitEquivalentInGram}}(g)</li>
+        </ul>
+
+      </div>
+    </div>
+
+
+  </div>
+  <div class="container näringsinnehåll">
+    <div class="row">
+      <div class="col-md-6">
+
+
+      </div>
+      <div class="col-md-6">
+        
+        
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="card container-fluid">
+        <div class="card-body">
+          <p>**mer information om receptet innehåll</p>
+          <h4 class="card-title">Näringsvärde </h4>
+          <p class="card-text">Näringsvärdet anger den mängd näringsämnen som en {{recipe2._name}} innehåller.</p>
+
+
+          <table class="table table-hover table-primary table-sm " *ngFor="let ingredient of recipe2._ingredients">
+            <tr>
+              <th colspan="4" scope="row">ingredient name :{{ingredient.Namn}}</th>
+            </tr>
+
+            <th scope="col">enkelomättade fettsyror</th>
+            <th scope="col">fleromättade fettsyror</th>
+            <th scope="col">mättade fettsyror</th>
+            <th scope="col">Protein</th>
+            <th scope="col">Kolhydrater</th>
+            <th scope="col">Salt</th>
+            <th scope="col">Energi (kcal)</th>
+
+            <tbody>
+              <td *ngFor="let item of ingredient.Naringsvarden.Naringsvarde">{{item.Varde * person |number}}</td>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+</div>

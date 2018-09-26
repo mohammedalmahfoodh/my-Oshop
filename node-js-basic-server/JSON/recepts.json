@@ -1,0 +1,132 @@
+[
+    {
+        "name": "Omelett",
+        "persons": 1,
+        "category":"Middag",
+        "instructions": [
+          "Knäck äggen",
+          "Krydda äggsmeten med salt m.m.",
+          "Vispa äggen",
+          "Stek smeten",
+          "Lägg på tallrik"
+        ],
+        "desicription":"an omelette or omelet is a dish made from beaten eggs fried with butter or oil in a frying pan (without stirring as in scrambled egg).",
+        "ingredients": [
+          {
+            "name": "ägg",
+            "units": 2,
+            "measuringUnit" : "st",
+            "unitEquivalentInGrams": 60
+          },
+          {
+            "name": "Salt sill panerad stekt hemlagad",
+            "units": 0,
+            "measuringUnit" : "st",
+            "unitEquivalentInGrams": 20
+            
+          },
+          {
+            "name": "mjölk",
+            "units": 1,
+            "measuringUnit" : "dl ",
+            "unitEquivalentInGrams": 0
+            
+          }
+        ],
+        "urlToImg" : "/images/Omelett.jpg"
+      },
+      {
+        "name": "Nutella semifreddo",
+        "persons": 1,
+        "category":"Efterrätt",
+        "instructions": [
+          "Knäck äggen",
+          "Krydda äggsmeten med salt m.m.",
+          "Vispa äggen",
+          "Stek smeten",
+          "Lägg på tallrik"
+        ],
+        "desicription":"En semifreddo med Nutella är lyxig nog att servera som efterrätt på nyår. Elvispen kommer att gå varm – du vispar först äggulor med socker, sedan äggvitor och sist grädde som du marmorerar med Nutellan.",
+        "ingredients": [
+          {
+            "name": "Sockerärter",
+            "units": 0,
+            "measuringUnit" : "gram",
+            "unitEquivalentInGrams": 30
+            
+          },
+          {
+              "name":"Gräddtårta",
+              "unitEquivalentInGrams": 135,
+              "units": 0,
+              "measuringUnit" : "gram"
+          },
+          {
+            "name":"gram ljummen nutella",
+            "unitEquivalentInGrams": 400,
+            "measuringUnit": "gram",
+            "units": 0
+
+          }
+          
+
+        ],
+        "urlToImg" : "/images/Nutella semifreddo.jpg"
+      },
+      {
+        "name": "Krabbelurer",
+        "category":"Efterrätt",
+        "persons": 1,
+        "instructions": [
+          "Knäck äggen",
+          "Krydda äggsmeten med salt m.m.",
+          "Vispa äggen",
+          "Stek smeten",
+          "Lägg på tallrik"
+        ],
+        "desicription":"Laga goda krabbelurer till frukost, utflykten eller fikat! Krabbelurer är fluffiga plättar som smakar som en blandning mellan sockerkaka och amerikanska pannkakor.",
+        "ingredients": [
+          {
+            "name": "Sockerärter",
+            "units": 0,
+            "measuringUnit" : "gram",
+            "unitEquivalentInGrams": 65
+            
+          },
+          {
+              "name":"vetemjöl",
+              "unitEquivalentInGrams": 255,
+              "units": 0,
+              "measuringUnit" : "gram"
+          },
+          {
+            "name":"bakpulver",
+            "unitEquivalentInGrams": 33,
+            "measuringUnit": "gram",
+            "units": 0
+
+        },
+        {
+            "name":"vaniljsocker",
+            "unitEquivalentInGrams": 25,
+            "measuringUnit": "gram",
+            "units": 0
+
+        }
+          
+
+        ],
+        "urlToImg" : "/images/Krabbelurer.jpg"
+      }
+
+
+
+
+
+
+
+
+
+
+
+]

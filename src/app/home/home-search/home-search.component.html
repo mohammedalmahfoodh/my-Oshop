@@ -1,0 +1,55 @@
+<div class="container">
+ 
+      <div class="d-flex justify-content-center container-fluid inputSearch">
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <div class="d-flex flex-row justify-content-center">
+              <input class="p-2 " type="text" placeholder="Pick a recipe" aria-label="Number" matTooltip="Type a recipe name"
+                matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip" matInput [formControl]="myControl"
+                [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </div>
+            </mat-form-field>
+          </form>
+        </div>
+
+        <div class="col-12 d-flex flex-row justify-content-center">
+           
+                <button type="button" class="btn btn-dark" (click)="getARecipe()" matTooltip="Press the button to search a recipe"
+                  [matTooltipDisabled]="disabled.value" aria-label="Button that displays a tooltip that can be programatically disabled">
+                  Search a recipe</button>              
+          </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-center">            
+            <div class="p-2">
+               
+    <a  ng-click="$event.stopPropagation();">
+        <div *ngIf="cheackrecipeReady()" (click)="sendToDisplay()" class="col-sm" routerLink="displayRecipy">
+          <p>Click for more information </p>             
+          <div class="card" style="width: 12rem; ">
+            <a  class="">
+              <img class="card-img-top" style="height:150px" [src]='photo'>
+              <div class="card-body">
+                <h3>{{title}}</h3>
+                <p class="card-text"> {{desicription}}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </a>
+            </div>
+          </div>
+ 
+    
+
+   
+
+
+
+
+  

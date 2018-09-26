@@ -1,0 +1,13 @@
+img {
+    width: 100%;
+}
+.table-primary{
+    margin-right: 25px;
+}
+h1,h2,h3{
+    font-family: 'Niconne', cursive;
+}
+#title{margin-top: 15px;}
+#recipesBorder{
+    margin-top: 10px;
+}
