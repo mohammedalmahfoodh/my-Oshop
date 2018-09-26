@@ -19,17 +19,14 @@ export class AdminRecipeComponent implements OnInit {
   constructor(private ingredieantService: IngredieantsService ,
     private recipeService:ReadRecipesService,private dataService:DataserviceService) { 
     this.recipe=new Recipe();this.ingredient=new Ingredient()}
-    log(){
-      console.log(this.options)
-     
-    }
+   
     addInstruction(){        
       this.recipe.setInstruction(this.recipeInstruction)
       this.recipeInstruction=''
     }
     nameStatus:boolean;
      checkRecipeName():boolean{
-       return this.nameStatus?this.recipeName=='':this.recipeName!=''
+       return this.nameStatus?!this.recipeName :!this.recipeName
      }
 
       instructionStatus:boolean;
@@ -37,7 +34,10 @@ export class AdminRecipeComponent implements OnInit {
        if(this.recipe._instructions.length==0)
        return true;
      }
- 
+     test2(){
+      
+        console.log(this.recipeName)
+      }
 
 
   myControl = new FormControl();
@@ -50,7 +50,7 @@ export class AdminRecipeComponent implements OnInit {
   filteredOptions: Observable<string[]>;  
   favoriteSeason: string;
   categories: string[] = ['Efterrätt', 'Middag', 'Mellanmål'];
-  recipeName:string;
+  recipeName:string="";
   recipeCategory:string;
   recipeInstruction:string;
   ingredientUnits:number;
@@ -90,12 +90,7 @@ export class AdminRecipeComponent implements OnInit {
         this.ingredient.unitEquivalentInGram=this.ingredientUnitInGrams     
    
               }
-   submit(x){
-     if(!x.dirty)  
-       console.log('no data')
-     
-      // console.log(x)
-     }
+   
 
   ngOnInit() {
     this.getIngredientsNames()
