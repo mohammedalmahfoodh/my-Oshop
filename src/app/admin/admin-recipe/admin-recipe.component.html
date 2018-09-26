@@ -111,7 +111,7 @@
           </label>
           
           <mat-form-field class="otherfield">
-            <textarea class="textarea" required name="imageLink" ngModel #imagelink="ngModel" [(ngModel)]="imageLink" id="imageLink" matInput placeholder="Add an image link"></textarea>
+            <textarea class="textarea" [required]="checkIimageLink()" name="imageLink" ngModel #imagelink="ngModel" [(ngModel)]="imageLink" id="imageLink" matInput placeholder="Add an image link"></textarea>
             <div class="alert alert-danger" *ngIf="imagelink.touched && imagelink.invalid ">
               <div *ngIf="imagelink.errors.required">Image link is required</div>
                            
@@ -122,9 +122,9 @@
             <p class="font-weight-bold" style="font-size: 1em;">
               Add a description </p>
           </label>
-          <button type="button" class="btn btn-primary mr-1">Add description</button>
+          
           <mat-form-field class="textarea">
-            <textarea matInput required ngModel name="description" #desc="ngModel" rows="3" cols="6"
+            <textarea matInput [required]="checkedescription()" ngModel name="description" #desc="ngModel" rows="3" cols="6"
              placeholder="description" id="description" [(ngModel)]="description"></textarea>
             <div class="alert alert-danger" *ngIf="desc.touched && desc.invalid ">
               <div *ngIf="desc.errors.required">description is required</div>
