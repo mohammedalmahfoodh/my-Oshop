@@ -1,7 +1,7 @@
 <div class="bodyadmin mt-5">
 
 
-  <button (click)="getingredient2()">test</button>
+  <button (click)="test2()">test</button>
   <section>
     <h2>Here you can create and save your favorite recipes</h2>
   </section>
@@ -19,7 +19,7 @@
           <mat-form-field class="otherfield">
             <input [required]="checkRecipeName()" ngModel minlength="2" 
              [(ngModel)]="recipeName" name="name" class="form-control" id="name"  type="text" matInput placeholder="Favorite food"  
-             value="Sushi" #fname="ngModel"    (change)="log()"  >
+             value="Sushi" #fname="ngModel"      >
              <div class="alert alert-danger" *ngIf="fname.touched && fname.invalid">
               <div *ngIf="fname.errors.required">Recipe name is required</div>
               <div *ngIf="fname.errors.minlength">First name should be minimum{{fname.errors.minlength.requiredLength}}</div>              
