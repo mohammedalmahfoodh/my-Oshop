@@ -10,9 +10,20 @@ export class AuthService {
   constructor(private afAuth:AngularFireAuth) {
     this.user$=afAuth.authState;
    }
-  login(){
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())  
    
+  //### log in for admin with email and password ########
+  doRegister(value){
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+      .then(res => {
+        resolve(res);
+      }, err => reject(err))
+    })
+  }
+  
+///##### login for user with google email #######
+  login(){
+    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())     
   }
   logout(){
     this.afAuth.auth.signOut();
