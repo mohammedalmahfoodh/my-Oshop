@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-primary fixed-top">
   <a class="navbar-brand" routerLink="/"><h3>Home</h3></a>
+  <a class="navbar-brand" routerLink="/admin-login"><h3>Home</h3></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -12,7 +13,7 @@
         <a class="nav-link" routerLink="/shopping-cart"><h3>Shooping Cart</h3></a>
       </li>
       <li *ngIf="!(auth.user$ | async )" class="nav-item">
-        <a class="nav-link" routerLink="/login"><h3>login</h3></a>
+        <a class="nav-link" routerLink="/admin-login"><h3>login(for admin)</h3></a>
       </li>
      
       
@@ -20,12 +21,12 @@
 
       <li *ngIf="auth.user$ | async as user " ngbDropdown class="nav-item dropdown ">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <h2> {{user.displayName}}     </h2> 
+         <h2> {{user.email}}     </h2> 
         </a>
         <div ngbDropdownMenu class="dropdown-menu " aria-labelledby="dropdown01">
           <a class="dropdown-item" routerLink="/my-orders"><h2>My Orders</h2></a>
           <a class="dropdown-item" routerLink="/admin/admin-orders"><h2>Manage Orders</h2></a>
-          <a class="dropdown-item" routerLink="/admin-recipe"><h2>Manage Products</h2></a>
+          <a class="dropdown-item" routerLink="/admin-recipe"><h2>Create recipe</h2></a>
           <a class="dropdown-item" id="logout" (click)="logout()"><h2>Log Out</h2></a>
         </div>
       </li>
