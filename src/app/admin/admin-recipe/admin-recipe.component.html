@@ -45,7 +45,7 @@
           </label>
           <button type="button" class="btn btn-primary mr-2" (click)="addInstruction()">Add instruction</button>
           <mat-form-field id="instruc" >
-            <textarea [required]="checkInstruction()" id="instructions" [(ngModel)]="recipeInstruction" type="text" class="form-control" ngModel minlength="10" name="instruction" #instr="ngModel" matInput placeholder="Add an Instruction"></textarea>
+            <textarea [required]="!checkInstruction()" id="instructions" [(ngModel)]="recipeInstruction" type="text" class="form-control" ngModel minlength="10" name="instruction" #instr="ngModel" matInput placeholder="Add an Instruction"></textarea>
             <div class="alert alert-danger" *ngIf="instr.touched && instr.invalid ">
                 <div *ngIf="instr.errors.required">Instruction is required</div>
                 <div *ngIf="instr.errors.minlength">instruction should be minimum{{instr.errors.minlength.requiredLength}}</div>              
@@ -105,13 +105,13 @@
 
 
 
-          <label for="instructions" class="mr-3">
+          <label for="imageLink" class="mr-3">
             <p class="font-weight-bold" style="font-size: 1em;">
               Add an url image </p>
           </label>
           
           <mat-form-field class="otherfield">
-            <textarea class="textarea" [required]="checkIimageLink()" name="imageLink" ngModel #imagelink="ngModel" [(ngModel)]="imageLink" id="imageLink" matInput placeholder="Add an image link"></textarea>
+            <textarea class="textarea" [required]="!checkIimageLink()" name="imageLink" ngModel #imagelink="ngModel" [(ngModel)]="imageLink" id="imageLink" matInput placeholder="Add an image link"></textarea>
             <div class="alert alert-danger" *ngIf="imagelink.touched && imagelink.invalid ">
               <div *ngIf="imagelink.errors.required">Image link is required</div>
                            
