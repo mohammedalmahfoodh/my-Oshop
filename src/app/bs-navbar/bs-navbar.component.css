@@ -6,9 +6,12 @@
 }
 .collapse{color: black;}
 #logout{cursor: pointer;}
-h3,h4,h6{font-family: 'Playball', cursive;color:black;}
+h3,h2,h4,h6{font-family: 'Playball', cursive;color:black;}
 h1,h2{font-family: 'Just Another Hand', cursive;font-size: 2rem;}
 p{font-family: 'Shrikhand', cursive;}
 .navbar-expand-md{
     background-image: url("https://images.pexels.com/photos/988872/pexels-photo-988872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  }
+  li{
+      color: black;
   }
