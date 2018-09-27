@@ -42,6 +42,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import { CreatedRecipeSuccComponent } from './admin/created-recipe-succ/created-recipe-succ.component';
 import { DisplayRecipeComponent } from './home/display-recipe/display-recipe.component';
+import { AdminLogInComponent } from './admin/admin-log-in/admin-log-in.component';
 @NgModule({
   declarations: [    
     AppComponent,
@@ -57,7 +58,7 @@ import { DisplayRecipeComponent } from './home/display-recipe/display-recipe.com
     HomeRecipesComponent,       
     RecipeMiddagComponent,       
     EfterretComponent,       
-    MellanmalComponent, AdminRecipeComponent, CreatedRecipeSuccComponent, DisplayRecipeComponent,
+    MellanmalComponent, AdminRecipeComponent, CreatedRecipeSuccComponent, DisplayRecipeComponent, AdminLogInComponent,
 
   ],
   imports: [  
@@ -87,6 +88,7 @@ import { DisplayRecipeComponent } from './home/display-recipe/display-recipe.com
       { path: 'order-success', component: OrderSuccessComponent,canActivate:[AuthGuardService] },
       { path: 'recipeAddedSuccess', component: CreatedRecipeSuccComponent },
       { path: 'admin-recipe', component: AdminRecipeComponent },
+      { path: 'admin-login', component: AdminLogInComponent },
       { path: 'login', component: LoginComponent },     
       { path: 'my-orders', component: MyOrdersComponent,canActivate:[AuthGuardService] }
       
