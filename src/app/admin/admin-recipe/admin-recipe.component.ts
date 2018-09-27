@@ -30,7 +30,7 @@ export class AdminRecipeComponent implements OnInit {
 
       instructionStatus:boolean;
      checkInstruction():boolean{       
-       if(this.recipe._instructions.length>=0)
+       if(this.recipe._instructions&&this.recipe._instructions.length>0)
        return true;     }
 
      descriptionStatus:boolean;
