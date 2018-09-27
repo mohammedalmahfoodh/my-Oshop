@@ -43,6 +43,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { CreatedRecipeSuccComponent } from './admin/created-recipe-succ/created-recipe-succ.component';
 import { DisplayRecipeComponent } from './home/display-recipe/display-recipe.component';
 import { AdminLogInComponent } from './admin/admin-log-in/admin-log-in.component';
+import { AdminIngredientComponent } from './admin/admin-ingredient/admin-ingredient.component';
 @NgModule({
   declarations: [    
     AppComponent,
@@ -58,7 +59,7 @@ import { AdminLogInComponent } from './admin/admin-log-in/admin-log-in.component
     HomeRecipesComponent,       
     RecipeMiddagComponent,       
     EfterretComponent,       
-    MellanmalComponent, AdminRecipeComponent, CreatedRecipeSuccComponent, DisplayRecipeComponent, AdminLogInComponent,
+    MellanmalComponent, AdminRecipeComponent, CreatedRecipeSuccComponent, DisplayRecipeComponent, AdminLogInComponent, AdminIngredientComponent,
 
   ],
   imports: [  
@@ -87,7 +88,8 @@ import { AdminLogInComponent } from './admin/admin-log-in/admin-log-in.component
       { path: 'check-out', component: CheckOutComponent,canActivate:[AuthGuardService] },
       { path: 'order-success', component: OrderSuccessComponent,canActivate:[AuthGuardService] },
       { path: 'recipeAddedSuccess', component: CreatedRecipeSuccComponent },
-      { path: 'admin-recipe', component: AdminRecipeComponent },
+      { path: 'admin-recipe', component: AdminRecipeComponent ,canActivate:[AuthGuardService] },
+      { path: 'admin-ingredient', component: AdminIngredientComponent ,canActivate:[AuthGuardService] },
       { path: 'admin-login', component: AdminLogInComponent },
       { path: 'login', component: LoginComponent },     
       { path: 'my-orders', component: MyOrdersComponent,canActivate:[AuthGuardService] }
