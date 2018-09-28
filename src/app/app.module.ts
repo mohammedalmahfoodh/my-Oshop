@@ -89,7 +89,7 @@ import { AdminIngredientComponent } from './admin/admin-ingredient/admin-ingredi
       { path: 'order-success', component: OrderSuccessComponent,canActivate:[AuthGuardService] },
       { path: 'recipeAddedSuccess', component: CreatedRecipeSuccComponent },
       { path: 'admin-recipe', component: AdminRecipeComponent ,canActivate:[AuthGuardService] },
-      { path: 'admin-ingredient', component: AdminIngredientComponent ,canActivate:[AuthGuardService] },
+      { path: 'admin-ingredient', component: AdminIngredientComponent  },
       { path: 'admin-login', component: AdminLogInComponent },
       { path: 'login', component: LoginComponent },     
       { path: 'my-orders', component: MyOrdersComponent,canActivate:[AuthGuardService] }
