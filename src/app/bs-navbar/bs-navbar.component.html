@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-primary fixed-top">
   <a class="navbar-brand" routerLink="/"><h3>Home</h3></a>
-  <a class="navbar-brand" routerLink="/admin-login"><h3>Home</h3></a>
+  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -9,15 +9,11 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto myul">
 
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/shopping-cart"><h3>Shooping Cart</h3></a>
-      </li>
+     
       <li *ngIf="!(auth.user$ | async )" class="nav-item">
         <a class="nav-link" routerLink="/admin-login"><h3>login(for admin)</h3></a>
-      </li>
-     
+      </li>    
       
-
 
       <li *ngIf="auth.user$ | async as user " ngbDropdown class="nav-item dropdown ">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
