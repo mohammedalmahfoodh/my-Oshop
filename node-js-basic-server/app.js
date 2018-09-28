@@ -159,6 +159,9 @@ function getNaringsvarden(ob, arr) {
     nutritianamValues.Namn = naringsName
     nutritianamValues.Varde = 0
     for (let naringsvarde of ingrNutritinValue) {
+     // if(naringsvarde["Varde"] instanceof string){
+       //  naringsvarde["Varde"]=naringsvarde["Varde"].replace(/,/g, ".") * 1
+    //  }
       nutritianamValues["Varde"] += (nutritianamValues.Namn == naringsvarde.Namn) ? naringsvarde["Varde"].replace(/,/g, ".") * 1 : 0
 
     }
