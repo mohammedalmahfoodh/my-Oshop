@@ -1,15 +1,17 @@
-import { Naring } from "./narig";
+
+
 
 export class Ingredient {
-    constructor(){}
-    Nummer:number;
+    Naringsvarden:{ Naringsvarde:any[]}
+    constructor(){   this.Naringsvarden={Naringsvarde:[]}        }
+    Nummer:string;
     Namn:string;
+    n
     units:number;
     unitEquivalentInGrams:number;
     ViktGram:string;
     Huvudgrupp:string;
-    Naringsvarden:{
-        Naringsvarde:Naring[]}
+    
         get unit (){
          return this.units;
         }
