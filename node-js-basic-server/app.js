@@ -56,22 +56,26 @@ const url = 'mongodb://localhost:27017';
 const dbName = 'test';
 const dbOshop = 'oshop'
 
-app.get('/getpeople', (req, res) => {
+
+
+
+//########## post an ingredient ########################33
+app.post('/saveingredient', (req, res) => {
+
   // Use connect method to connect to the server
   MongoClient.connect(url, function (err, client) {
-    const dbName = 'test';
+    const db = client.db(dbOshop);
     assert.equal(null, err);
-
-    const db = client.db(dbName);
-    db.collection("people").find({}).toArray(function (err, result) {
-      if (err) throw err;
-      let re = result.filter(per => per.name == 'Niklas').map(per => per.name)
-      res.json(re)
-    });
-
-  }, { useNewUrlParser: true });
-
+    db.collection('ingredients').insertOne(req.body, (err, result) => {
+      assert.equal(null, err);
+      res.send(req.body)
+    })
+    console.log(req.body)
+  });
 })
+
+
+
 //########## get all ingredients #####################33
 app.get('/ingredients', (req, res) => {
   // Use connect method to connect to the server
@@ -142,11 +146,6 @@ app.get('/autocomplete-recipe-name/:startOfName', (req, res) => {
   });
 
 })
-
-
-
-
-
 
 
 ///######## calculate nutritional values ##############
@@ -230,7 +229,7 @@ app.get('/recipe/:startOfName', (req, res) => {
 
     assert.equal(null, err);
     const db = client.db(dbOshop);
-    db.collection("recipe").find({}).toArray(function (err, result) {
+    db.collection("recipe").find({_name:req.params.startOfName}).toArray(function (err, result) {
       if (err) throw err;
       // let re=result.filter(per=>per.name=='Niklas').map(per=>per.name)
       recipes = result.map(obj => new Recipe(obj))
