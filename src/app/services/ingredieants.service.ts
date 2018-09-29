@@ -2,7 +2,7 @@ import { throwError as observableThrowError, throwError as _throw, Observable, o
 import { AppError } from './../shared/app-error';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpModule, Http } from '@angular/http';
+import { HttpModule, Http,Response } from '@angular/http';
 import { debounceTime, map, catchError } from 'rxjs/operators';
 import { NotFoundError } from '../shared/not-found-error';
 import { BadInput } from '../shared/bad-input';
@@ -18,6 +18,7 @@ export class IngredieantsService {
   private urlIngredient: string = "http://localhost:3000/ingredient/";
   private  urlIngredientsNames:string="http://localhost:3000/ingredients/names";
   private  urlIngredientNameAuto:string="http://localhost:3000/ingredient/";
+  private urlCreateIngredient:string="http://localhost:3000/saveingredient"
   private ingName;
   constructor(private http: Http,private http2:HttpClient) { }
 
@@ -60,12 +61,27 @@ getIngName(term){
          if(error.status===404)
          return observableThrowError(new NotFoundError());
          return observableThrowError(new AppError(error));
-       }))
+       }))      
+    
+    }
 
-    
-    
-    
-  }
+  ////########### post ingredient ##############
+private extractData(res: Response) {
+	let body = res.json();
+        return body || {};
+    }
+    private handleErrorObservable (error: Response | any) {
+      console.error(error.message || error);
+      return Observable.throw(error.message || error);
+        }
+        createIngredient(ingredient) {	        
+        return this.http.post(this.urlCreateIngredient, ingredient )
+                   .map(this.extractData)                   
+    }
+
+
+
+
 
 
 }
