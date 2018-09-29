@@ -73,7 +73,7 @@ export class HomeSearchComponent implements OnInit,OnChanges  {
   }
      private _filter(value: string): string[] {
      const filterValue = value.toLowerCase();
-     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+     return this.options.filter(option => option.toLowerCase().indexOf(filterValue)==0);
      }
      
 
