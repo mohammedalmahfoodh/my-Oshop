@@ -70,11 +70,9 @@ export class AdminRecipeComponent implements OnInit {
     this.recipeService.createRecipe(this.recipe).subscribe(      
       (res) => {        
        console.log(this.recipe ) ;
-
-       // console.log(this.reci)
+       
       });
   }
-
 
   sendToDisplay(reci){
     this.dataService.changeRecipe(reci)    
