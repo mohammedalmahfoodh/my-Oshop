@@ -12,7 +12,7 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CheckOutComponent } from './check-out/check-out.component';
+
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import {MatButtonModule} from '@angular/material/button';
@@ -44,14 +44,14 @@ import { CreatedRecipeSuccComponent } from './admin/created-recipe-succ/created-
 import { DisplayRecipeComponent } from './home/display-recipe/display-recipe.component';
 import { AdminLogInComponent } from './admin/admin-log-in/admin-log-in.component';
 import { AdminIngredientComponent } from './admin/admin-ingredient/admin-ingredient.component';
+import { IngredientAddedSuccessComponent } from './admin/ingredient-added-success/ingredient-added-success.component';
 @NgModule({
   declarations: [    
     AppComponent,
     BsNavbarComponent,
     HomeComponent,
     ProductsComponent,
-    ShoppingCartComponent,
-    CheckOutComponent,
+    ShoppingCartComponent,   
     OrderSuccessComponent,
     MyOrdersComponent,      
     LoginComponent,
@@ -59,7 +59,7 @@ import { AdminIngredientComponent } from './admin/admin-ingredient/admin-ingredi
     HomeRecipesComponent,       
     RecipeMiddagComponent,       
     EfterretComponent,       
-    MellanmalComponent, AdminRecipeComponent, CreatedRecipeSuccComponent, DisplayRecipeComponent, AdminLogInComponent, AdminIngredientComponent,
+    MellanmalComponent, AdminRecipeComponent, CreatedRecipeSuccComponent, DisplayRecipeComponent, AdminLogInComponent, AdminIngredientComponent, IngredientAddedSuccessComponent,
 
   ],
   imports: [  
@@ -84,10 +84,10 @@ import { AdminIngredientComponent } from './admin/admin-ingredient/admin-ingredi
       { path:'recipeMiddag',component:RecipeMiddagComponent},
      
       { path: 'products', component: ProductsComponent },
-      { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'check-out', component: CheckOutComponent,canActivate:[AuthGuardService] },
+      { path: 'shopping-cart', component: ShoppingCartComponent },     
       { path: 'order-success', component: OrderSuccessComponent,canActivate:[AuthGuardService] },
-      { path: 'recipeAddedSuccess', component: CreatedRecipeSuccComponent },
+      { path: 'recipeAddedSuccess', component: CreatedRecipeSuccComponent,canActivate:[AuthGuardService] },
+      { path: 'ingredientAddedSuccess', component: IngredientAddedSuccessComponent,canActivate:[AuthGuardService]  },
       { path: 'admin-recipe', component: AdminRecipeComponent ,canActivate:[AuthGuardService] },
       { path: 'admin-ingredient', component: AdminIngredientComponent  },
       { path: 'admin-login', component: AdminLogInComponent },
