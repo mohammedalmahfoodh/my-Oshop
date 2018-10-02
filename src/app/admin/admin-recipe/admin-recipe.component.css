@@ -10,6 +10,9 @@
   .example-full-width {
     width: 100%;
   }
+  .description{
+    width: 500px;
+  }
   .otherfield{width: 60%; }
     #description{width:100%;}
 h3,h4,h6{font-family: 'Playball', cursive;}
