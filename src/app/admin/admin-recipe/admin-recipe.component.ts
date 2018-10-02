@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormControl, NgForm } from '@angular/forms';
 import { Ingredient } from '../../shared/ingredient';
 import { IngredieantsService } from '../../services/ingredieants.service';
 import { Observable } from 'rxjs';
@@ -16,86 +16,14 @@ import { DataserviceService } from '../../services/dataservice.service';
   styleUrls: ['./admin-recipe.component.css']
 })
 export class AdminRecipeComponent implements OnInit {
-  constructor(private ingredieantService: IngredieantsService ,
-    private recipeService:ReadRecipesService,private dataService:DataserviceService) { 
-    this.recipe=new Recipe();this.ingredient=new Ingredient()}
-   
-    addInstruction(){        
-      this.recipe.setInstruction(this.recipeInstruction)
-      this.recipeInstruction=''}
-    nameStatus:boolean;
-     checkRecipeName():boolean{
-       return this.nameStatus?!this.recipeName :!this.recipeName
-     }
 
-      instructionStatus:boolean;
-     checkInstruction():boolean{       
-       if(this.recipe._instructions&&this.recipe._instructions.length>0)
-       return true;     }
-
-     descriptionStatus:boolean;
-     checkedescription():boolean{    
-         return this.description?!this.description :!this.description }
-         imageLinkStatus:boolean;
-        checkIimageLink():boolean{    
-             return this.description?!this.imageLink :!this.imageLink }
-
-
-     test2(){
-      
-        console.log(this.recipeName)
-      }
-
-
-  myControl = new FormControl();
-  ingredient: Ingredient;
-  ingredients;
-  recipe:Recipe;
-  ////######Form variables #########
-
-  options: string[] = [];
-  filteredOptions: Observable<string[]>;  
-  favoriteSeason: string;
-  categories: string[] = ['Efterrätt', 'Middag', 'Mellanmål'];
-  recipeName:string="";
-  recipeCategory:string;
-  recipeInstruction:string;
-  ingredientUnits:number;
-  ingredientUnitInGrams:number;
-  imageLink:string;
-  description:string;
-  recipe2;
-  ////###### get recipe name from user ######
-  saveRecipe() {    
-    this.recipeService.createRecipe(this.recipe).subscribe(      
-      (res) => {        
-       console.log(this.recipe ) ;
-       
-      });
+  //#### constructor ##########
+  constructor(private ingredieantService: IngredieantsService,
+    private recipeService: ReadRecipesService, private dataService: DataserviceService) {
+    this.recipe = new Recipe(); this.ingredient = new Ingredient()
   }
 
-  sendToDisplay(reci){
-    this.dataService.changeRecipe(reci)    
-       }
-  logRecipe(){
-    this.recipe.name=this.recipeName
-    this.recipe.category=this.recipeCategory
-    this.recipe.persons=1
-    this.recipe.urlToImg=this.imageLink
-    this.recipe.desicription=this.description
-    this.saveRecipe();
-    this.sendToDisplay(this.recipe)
-    
-  }
-  
-  addIngredient(){
-    this.getingredient2()
-       this.ingredient.unit=this.ingredientUnits
-        this.ingredient.unitEquivalentInGram=this.ingredientUnitInGrams     
-   
-              }
-   
-
+  ///##### ngOnInit method #########
   ngOnInit() {
     this.getIngredientsNames()
     this.filteredOptions = this.myControl.valueChanges
@@ -103,103 +31,174 @@ export class AdminRecipeComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
-      this.dataService.currentRecipe.subscribe(recipe=>this.recipe2=recipe)
+    this.dataService.currentRecipe.subscribe(recipe => this.recipe2 = recipe)
   }
+
+  //#### filter method for ingredients names autocomplete    
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-   // return this.options.filter(option => option.toLowerCase().includes(filterValue));
-   return this.options.filter(option => option.toLowerCase().
-   indexOf(filterValue)==0 );
-   
+    // return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.options.filter(option => option.toLowerCase().
+      indexOf(filterValue) == 0);
+  }
+
+  ///###### Variables #######
+
+  @ViewChild('form')recipeForm:NgForm;
+  options: string[] = [];
+  filteredOptions: Observable<string[]>;
+  myControl = new FormControl();
+  recipe: Recipe;
+  recipeInstruction: string;
+  url: any;
+  ingredient: Ingredient;
+  categories: string[] = ['Efterrätt', 'Middag', 'Mellanmål'];
+  recipe2;
+  ingredientUnits: number;
+  ingredientUnitInGrams: number;
+  ingredients;
+
+  //### submit form ####3
+  onSubmit(){
+    this.recipe.name=this.recipeForm.controls.name.value;
+    this.recipe.category = this.recipeForm.controls.category.value;
+    this.recipe.persons = 1
+   if(this.recipe._urlToImg=='')
+       this.recipe._urlToImg=this.url
+       this.recipe.desicription = this.recipeForm.controls.description.value;
+    this.saveRecipe();
+    this.sendToDisplay(this.recipe)   
+   // console.log(this.recipeForm)
+   // console.log(this.recipe)
+  }
+  resetForm(){
+    this.recipeForm.reset();  
+
+  }
+//### add and track instructions state ##########
+  addInstruction() {
+    this.recipe.setInstruction(this.recipeForm.controls.instruction.value)
+    this. recipeInstruction=''
+  }
+  instructionStatus: boolean;
+  checkInstruction(): boolean {
+    if (this.recipe._instructions && this.recipe._instructions.length > 0)
+      return true;
+  }
+
+////###### add ingredients #########
+  addIngredient() {
+    this.getingredient2()
+    this.ingredient.unit = this.recipeForm.controls.units.value
+    this.ingredient.unitEquivalentInGram = this.recipeForm.controls.unitEquivalentInGrams.value
+
   }
   
-  //######## Get ingredients names ##############
-  getIngredientsNames() {
-    this.ingredieantService.getIngredientsNames().subscribe(
-      res => {
-        //this.recipesNames = res.json();
-        this.options = res.json();
-      },
-      error => {
-        alert('An unexpected error occurred')
-        console.log(error);
-      });
-
-  }
-
-
-  test() {
-    let str: string;
-    let ingName: string = String(this.myControl.value)
-    if (ingName.includes('%')) {
-      console.log(ingName + '  has   ok')
-    } else {
-      console.log('no')
-    }
-    /*
-    Naringsvarden:
-Naringsvarde: Array(7)
-0: {Namn: "Summa enkelomättade fettsyror", Varde: 28.8}
-1: {Namn: "Summa fleromättade fettsyror", Varde: 2.76}
-2: {Namn: "Summa mättade fettsyror", Varde: 35.8}
-3: {Namn: "Protein", Varde: 7}
-4: {Namn: "Kolhydrater", Varde: 0}
-5: {Namn: "Salt", Varde: 0.03}
-6: {Namn: "Energi (kcal)", Varde: 656}
-    */
-  }
-
-
- //##### get an ingredient ##############
+  //##### get an ingredient ##############
   getingredient2() {
-   if(!this.checkIngredientInRecipe()){     
-    
-    let str: string;
-    let ingName: string = String(this.myControl.value)
-    if (ingName.length >= 2) {
-      str = ingName
-      //### fix % char in url address ######
-      if (ingName.includes("%")) {
-        str = ingName.replace(/%/g,"%25")
+    if (!this.checkIngredientInRecipe()) {
+      let str: string;
+      let ingName: string = String(this.myControl.value)
+      if (ingName.length >= 2) {
+        str = ingName
+        //### fix % char in url address ######
+        if (ingName.includes("%")) {
+          str = ingName.replace(/%/g, "%25")
+        }
+        this.ingredieantService.getINgredientObservable(str).subscribe(res => {
+          let ingredientDB = <Ingredient>res;               
+          this.ingredient = ingredientDB
+
+          this.ingredient.unit = this.ingredientUnits
+          this.ingredient.unitEquivalentInGram = this.ingredientUnitInGrams
+          console.log(this.ingredient)          
+          this.calculateNarings()
+          this.recipe.setIngredient(this.ingredient)          
+        }, error => {
+          alert('An unexpected error occurred here is')
+        })
       }
-      this.ingredieantService.getINgredientObservable(str).subscribe(res => {
-        let ingredientDB = <Ingredient>res;
-      //  console.log(ingredientDB)       
-        this.ingredient=ingredientDB   
-         
-        this.ingredient.unit=this.ingredientUnits
-        this.ingredient.unitEquivalentInGram=this.ingredientUnitInGrams
-          console.log(this.ingredient) 
-      //console.log(this.ingredientUnits)
-      //console.log(this.ingredientUnitInGrams)
-      this.calculateNarings()
-       this.recipe.setIngredient(this.ingredient)   
-        //  console.log(ingredientDB)    
-       //console.log(this.recipe.ingredients)
-      }, error => {
-        alert('An unexpected error occurred here is')
-      })
+    } else {
+      return
     }
-  }else{
-    return
-  }
-}
-  checkIngredientInRecipe():boolean{
-    let ingName: string = String(this.myControl.value)
-    if(ingName==''||ingName==' ')
-    return true
-    for(let ingre of this.recipe.ingredients){
-      if(ingName==ingre.Namn)
-      return true
-    }
-  }
-  calculateNarings(){
-    let naring=this.ingredient.Naringsvarden.Naringsvarde
-    console.log(naring)
-    for(let newVal of naring){
-       newVal.Varde=newVal.Varde*(this.ingredient.unitEquivalentInGram*this.ingredient.unit)/100 
-      }
-   
   }
   
+  //###### check if an ingredient is already exists in recipe #######
+  checkIngredientInRecipe(): boolean {
+    let ingName: string = String(this.myControl.value)
+    if (ingName == '' || ingName == ' ')
+      return true
+    for (let ingre of this.recipe.ingredients) {
+      if (ingName == ingre.Namn)
+        return true
+    }
+  }
+  ////####### calculate nutritional values according to units and unit in gram gathered from user
+  calculateNarings() {
+    let naring = this.ingredient.Naringsvarden.Naringsvarde
+   // console.log(naring)
+    for (let newVal of naring) {
+      newVal.Varde = newVal.Varde * (this.ingredient.unitEquivalentInGram * this.ingredient.unit) / 100
+    }
+  }
+  
+ 
+ //######## Get ingredients names ##############
+ getIngredientsNames() {
+  this.ingredieantService.getIngredientsNames().subscribe(
+    res => {
+      //this.recipesNames = res.json();
+      this.options = res.json();
+    },
+    error => {
+      alert('An unexpected error occurred')
+      console.log(error);
+    });
+}  
+
+ 
+  imageLinkStatus: boolean;
+  setImageLink() {
+    this.recipe._urlToImg=this.recipeForm.controls.imageLink.value
+    this.url=''
+    if(this.recipe._urlToImg!='')
+      this.imageLinkStatus=true
+  }  
+//##### browse computer for uploading a fhoto
+  readUrl(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.url = (<FileReader>event.target).result;
+         this.recipe._urlToImg=''
+        this.imageLinkStatus=true
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+  //###### post a recipe #####
+  saveRecipe() {
+    this.recipeService.createRecipe(this.recipe).subscribe(
+      (res) => {
+        console.log(this.recipe);
+
+      });
+  }
+  ///###### send object of the recipe to success rout
+  sendToDisplay(reci) {
+    this.dataService.changeRecipe(reci)
+  }
+  
+  
+  
+ 
+  
+  
+  
+  
+ 
+
+  
+ 
+
 }
