@@ -9,6 +9,11 @@ app.use(express.static('www'));
 app.listen(3000, () => console.log('Listening on port 3000'));
 const Ingredient = require('./classes/ingredient.js')
 const bodyParser=require('body-parser')
+
+
+// Tell the bodyparser middleware to accept more data
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(bodyParser.json())
 let ingredients = [];
 let ingredient;
@@ -44,7 +49,7 @@ app.use(cors({
 
 
 //###### config body parser#########
-app.use(express.json({ extended: false }));
+//app.use(express.json({ extended: false }));
 
 
 //////###### Mongo connection /////
@@ -86,8 +91,7 @@ app.get('/ingredients', (req, res) => {
     const db = client.db(dbOshop);
 
     db.collection("ingredients").find({}).toArray(function (err, result) {
-      if (err) throw err;
-      // let re=result.filter(per=>per.name=='Niklas').map(per=>per.name)
+      if (err) throw err;     
       ingredients = result.map(obj => new Ingredient(obj))
       res.json(ingredients)
     });
@@ -190,8 +194,7 @@ app.get('/ingredient/:startOfName', (req, res) => {
      // ingredients = ingredients.filter(ing => ing.Namn.toLowerCase().
      //   indexOf(twoChars) == 0)
      ingredient = new Ingredient(ingredients[0])
-      ingredient = ingredients[0]     
-      
+      ingredient = ingredients[0]           
            
      let tempArray = ingredient.Naringsvarden.Naringsvarde
       ingredient = clearNringsverden(ingredient)
@@ -230,8 +233,7 @@ app.get('/recipe/:startOfName', (req, res) => {
     assert.equal(null, err);
     const db = client.db(dbOshop);
     db.collection("recipe").find({_name:req.params.startOfName}).toArray(function (err, result) {
-      if (err) throw err;
-      // let re=result.filter(per=>per.name=='Niklas').map(per=>per.name)
+      if (err) throw err;     
       recipes = result.map(obj => new Recipe(obj))
       let recipe = recipes.filter(ing => ing._name.toLowerCase().
         indexOf(twoChars) == 0)
@@ -252,7 +254,7 @@ app.post('/saverecipe', (req, res) => {
     assert.equal(null, err);
     db.collection('recipe').insertOne(req.body, (err, result) => {
       assert.equal(null, err);
-      res.send(req.body)
+      res.send('recipe added successfully')
     })
     console.log(req.body)
 
