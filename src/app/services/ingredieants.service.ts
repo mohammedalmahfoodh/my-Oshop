@@ -19,6 +19,7 @@ export class IngredieantsService {
   private  urlIngredientsNames:string="http://localhost:3000/ingredients/names";
   private  urlIngredientNameAuto:string="http://localhost:3000/ingredient/";
   private urlCreateIngredient:string="http://localhost:3000/saveingredient"
+  private urlCreateNaringsvarde:string="http://localhost:3000/Naringsvarde/names"
   private ingName;
   constructor(private http: Http,private http2:HttpClient) { }
 
@@ -47,6 +48,26 @@ public getIngredientsNames() {
   }))
   
 }
+
+///######get Naringsvarde names ############
+public getNaringsvardeNames() {
+  return this.http.get(this.urlCreateNaringsvarde).pipe(map((res:any)=>{
+   return res ;
+  }),catchError((error:Response)=>{
+    if(error.status===404)
+    return observableThrowError(new NotFoundError());
+    return observableThrowError(new AppError(error));
+  }))
+  
+}
+
+
+
+
+
+
+
+
 //####3 get igredientName ###########3
 getIngName(term){
   this.ingName=term
