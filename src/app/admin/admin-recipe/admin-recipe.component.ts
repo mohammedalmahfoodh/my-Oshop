@@ -93,6 +93,15 @@ export class AdminRecipeComponent implements OnInit {
     this.ingredient.unitEquivalentInGram = this.recipeForm.controls.unitEquivalentInGrams.value
 
   }
+  //#### remove an ingredient 
+  removeIngredient(ingreduent){
+     for(let ingr of this.recipe.ingredients){
+       if(ingreduent.Namn==ingr.Namn){
+        const index = this.recipe.ingredients.indexOf(ingr, 0);        
+          this.recipe.ingredients.splice(index, 1);       
+       }
+     }
+  }
   
   //##### get an ingredient ##############
   getingredient2() {
@@ -111,9 +120,14 @@ export class AdminRecipeComponent implements OnInit {
 
           this.ingredient.unit = this.ingredientUnits
           this.ingredient.unitEquivalentInGram = this.ingredientUnitInGrams
-          console.log(this.ingredient)          
+                    
           this.calculateNarings()
-          this.recipe.setIngredient(this.ingredient)          
+          this.recipe.setIngredient(this.ingredient)     
+          this.myControl.setValue('')
+          this.recipeForm.controls.units.setValue('')
+          this.recipeForm.controls.unitEquivalentInGrams.setValue('')
+          console.log(this.recipe.ingredients)
+
         }, error => {
           alert('An unexpected error occurred here is')
         })
@@ -139,6 +153,7 @@ export class AdminRecipeComponent implements OnInit {
    // console.log(naring)
     for (let newVal of naring) {
       newVal.Varde = newVal.Varde * (this.ingredient.unitEquivalentInGram * this.ingredient.unit) / 100
+      newVal.Varde=newVal.Varde.toFixed(2)
     }
   }
   
