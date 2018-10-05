@@ -117,17 +117,14 @@ export class AdminRecipeComponent implements OnInit {
         this.ingredieantService.getINgredientObservable(str).subscribe(res => {
           let ingredientDB = <Ingredient>res;               
           this.ingredient = ingredientDB
-
           this.ingredient.unit = this.ingredientUnits
-          this.ingredient.unitEquivalentInGram = this.ingredientUnitInGrams
-                    
+          this.ingredient.unitEquivalentInGram = this.ingredientUnitInGrams                    
           this.calculateNarings()
           this.recipe.setIngredient(this.ingredient)     
           this.myControl.setValue('')
           this.recipeForm.controls.units.setValue('')
           this.recipeForm.controls.unitEquivalentInGrams.setValue('')
           console.log(this.recipe.ingredients)
-
         }, error => {
           alert('An unexpected error occurred here is')
         })

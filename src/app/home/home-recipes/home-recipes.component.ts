@@ -22,7 +22,7 @@ export class HomeRecipesComponent implements OnInit {
   categoriesEfterrett;
   allCategories;
   recipe2;
-
+  p: number = 1;
   constructor(private recipeService:ReadRecipesService,private dataService:DataserviceService) { this.recipes=[]}
   
 

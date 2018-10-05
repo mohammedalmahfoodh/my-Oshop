@@ -9,7 +9,7 @@ export class Recipe {
    _instructions: string[]
    _desicription: string
    _ingredients: Ingredient[]
-   _urlToImg: string;
+   _urlToImg: string ;
  
   constructor(){
     this._instructions=[]

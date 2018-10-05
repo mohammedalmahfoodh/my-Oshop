@@ -25,6 +25,9 @@ private urlDleteRecipe:string='';
 private urlCreateRecipe:string='http://localhost:3000/saverecipe';
 private urlRecipesNames='http://localhost:3000/recipes/names';
 private urlRecipesCatrgories='http://localhost:3000/recipes/categories';
+private urlRecipesEfterret='http://localhost:3000/category/efterret';
+private urlRecipesMiddag='http://localhost:3000/category/Middag';
+
 recipes:any[];
 recipesNames:any[];
 
@@ -80,8 +83,8 @@ return this.http.delete(this.urlDleteRecipe+'/'+name).pipe(catchError((error:Res
 }
 ////########### post recipe ##############
 private extractData(res: Response) {
-	let body = res.json();
-        return body || {};
+	let body = res.json();  
+    return body || {};
     }
     private handleErrorObservable (error: Response | any) {
       console.error(error.message || error);
@@ -90,7 +93,7 @@ private extractData(res: Response) {
 
         createRecipe(recipe) {	        
         return this.http.post(this.urlCreateRecipe, recipe )
-                   .map(this.extractData)
+                //   .map(this.extractData)
                    
     }
 updateRecipe(recipe){
@@ -133,11 +136,28 @@ public getRecipesCategories() {
 }
 
 ///############################################3
-sharedRecipe(){
-  
+public getRecipesEfterret() {
+  return this.http.get(this.urlRecipesEfterret).pipe(map((res:any)=>{
+   return res ;
+  }),catchError((error:Response)=>{
+
+    if(error.status===404)
+    return observableThrowError(new NotFoundError());
+    return observableThrowError(new AppError(error));
+  }));
 }
 
+///############################################3
+public getRecipesMiddag() {
+  return this.http.get(this.urlRecipesMiddag).pipe(map((res:any)=>{
+   return res ;
+  }),catchError((error:Response)=>{
 
+    if(error.status===404)
+    return observableThrowError(new NotFoundError());
+    return observableThrowError(new AppError(error));
+  }));
+}
 
 
 

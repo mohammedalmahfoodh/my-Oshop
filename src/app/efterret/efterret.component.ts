@@ -82,16 +82,11 @@ export class EfterretComponent implements OnInit {
 
 //######## Get recipes ##############
 getRecipes(){
-  this.recipeService.getRecipes().subscribe(
+  this.recipeService.getRecipesEfterret().subscribe(
     res=>{
-      this.recipes=res.json();
-      this.allCategories=this.recipes.filter(recipe=>recipe._category).length
-      this.recipes=this.recipes.filter(res=>res._category=='Efterrätt')
-      this.categoriesEfterrett= this.recipes.filter(recipe=>recipe._category=='Efterrätt').length
-      
-            
-     
-  },
+      this.recipes=res.json();      
+      this.categoriesEfterrett= this.recipes.length              
+          },
   error=>{
     alert('An unexpected error occurred')
     console.log(error);

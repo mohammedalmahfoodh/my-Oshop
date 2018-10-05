@@ -3,8 +3,12 @@ const express = require('express');
 const bodyParser=require('body-parser')
 const app = express();
 app.use(bodyParser.json())
-
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+const mongoose=require('mongoose')
 const routes=require('./routs/api')
+mongoose.connect('mongodb://localhost/usersdb')
+mongoose.Promise=global.Promise
 // Create a new web server
 
 // Tell the web server to serve files

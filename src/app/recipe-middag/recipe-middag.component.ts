@@ -70,16 +70,11 @@ export class RecipeMiddagComponent implements OnInit {
 
 //######## Get recipes ##############
 getRecipes(){
-  this.recipeService.getRecipes().subscribe(
+  this.recipeService.getRecipesMiddag().subscribe(
     res=>{
-      this.recipes=res.json();
-      this.allCategories=this.recipes.filter(recipe=>recipe._category).length
-      this.recipes=this.recipes.filter(res=>res._category=='Middag')
-      this.categoriesMiddag= this.recipes.filter(recipe=>recipe._category=='Middag').length
-      
-            
-     
-  },
+      this.recipes=res.json();          
+      this.categoriesMiddag= this.recipes.length                   
+    },
   error=>{
     alert('An unexpected error occurred')
     console.log(error);

@@ -1,8 +1,12 @@
 
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
+
 import { environment } from './../environments/environment';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule,LOCALE_ID, ErrorHandler } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -12,7 +16,7 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import {MatButtonModule} from '@angular/material/button';
@@ -58,7 +62,7 @@ import { IngredientAddedSuccessComponent } from './admin/ingredient-added-succes
     HomeSearchComponent,       
     HomeRecipesComponent,       
     RecipeMiddagComponent,       
-    EfterretComponent,       
+    EfterretComponent,     
     MellanmalComponent, AdminRecipeComponent, CreatedRecipeSuccComponent, DisplayRecipeComponent, AdminLogInComponent, AdminIngredientComponent, IngredientAddedSuccessComponent,
 
   ],
@@ -73,7 +77,7 @@ import { IngredientAddedSuccessComponent } from './admin/ingredient-added-succes
     AngularFireAuthModule,
     HttpClientModule,
     HttpModule,    
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,NgxPaginationModule,
     
     FormsModule,
     NgbModule.forRoot(),
@@ -99,7 +103,7 @@ import { IngredientAddedSuccessComponent } from './admin/ingredient-added-succes
 
   ],
   providers: [AuthService,
-    AuthGuardService,ReadRecipesService,  
+    AuthGuardService,ReadRecipesService,   { provide: LOCALE_ID, useValue: 'fr' } ,
   ],
   bootstrap: [AppComponent]
 })

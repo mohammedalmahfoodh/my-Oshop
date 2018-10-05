@@ -4,7 +4,7 @@
           <form class="example-form">
             <mat-form-field class="example-full-width">
               <div class="d-flex flex-row justify-content-center">
-              <input class="p-2 " type="text" placeholder="Pick a recipe" aria-label="Number" matTooltip="Type a recipe name"
+              <input class="p-2 " type="text" placeholder="Välj ett recept" aria-label="Number" matTooltip="Skriv ett recept namn"
                 matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip" matInput [formControl]="myControl"
                 [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete">
@@ -21,15 +21,16 @@
            
                 <button type="button" class="btn btn-dark" (click)="getARecipe()" matTooltip="Press the button to search a recipe"
                   [matTooltipDisabled]="disabled.value" aria-label="Button that displays a tooltip that can be programatically disabled">
-                  Search a recipe</button>              
+                  
+Sök ett recept</button>              
           </div>
         </div>
 
         <div class="d-flex flex-row justify-content-center">            
             <div class="p-2">
                
-    <a  ng-click="$event.stopPropagation();">
-        <div *ngIf="cheackrecipeReady()" (click)="sendToDisplay()" class="col-sm" routerLink="displayRecipy">
+    <a  ng-click="$event.stopPropagation();"   >
+        <div *ngIf="cheackrecipeReady()" (click)="sendToDisplay()" class="col-sm animated flipInX delay-5s" routerLink="displayRecipy">
           <p>Click for more information </p>             
           <div class="card" style="width: 12rem; ">
             <a  class="">

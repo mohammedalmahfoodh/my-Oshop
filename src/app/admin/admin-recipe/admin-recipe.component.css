@@ -30,3 +30,7 @@ p{font-family: -apple-system, BlinkMacSystemFont,
      #instruc{
        width: 50%;
      }
+     a{
+       cursor: pointer;
+     }
+    

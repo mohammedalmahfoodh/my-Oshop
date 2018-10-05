@@ -6,3 +6,5 @@ const recipeSchema=new schema({_instructions:{type:[]},_ingredients:[{nummer:str
     _category:{type:string},_persons:number,_urlToImg:{type:string},_desicription:{type:string} 
 
 })
+const Recipe=mongoose.model('recipe',schema)
+module.exports=Recipe;

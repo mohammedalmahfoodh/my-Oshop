@@ -1,0 +1,176 @@
+<div class="container d-flex justify-content-center mt-5">
+  <h1>På denna sida kan du skapa en ingrediens </h1>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+
+
+      <form action="" [formGroup]="createIndredient" (ngSubmit)="createIngredient()">
+        <div class="container d-flex justify-content-center">
+          <div class="example-container">
+
+            <mat-form-field>
+              <label for="ingredientName" class="mt-4">
+                <h4 class="font-weight-bold" style="font-size: 1em;">
+                  Ange ingrediensens namn </h4>
+              </label>
+              <input formControlName="ingredientName" type="text" matInput placeholder="naringsVardenamn" id="ingredientName">
+              <div class="alert alert-danger " *ngIf="ingredientName.touched && ingredientName.invalid">
+                <div *ngIf="ingredientName.errors.required">Ingrediens Namn krävs</div>
+              </div>
+            </mat-form-field>
+
+
+            <mat-form-field>
+              <label for="ngnummer" class="mt-4">
+                <h4 class="font-weight-bold" style="font-size: 1em;">
+                  Skriv ingrediensens nummer </h4>
+              </label>
+              <input required formControlName="ingredientNumber" type="text" matInput placeholder="Ingredients number"
+                id="ngnummer">
+              <div class="alert alert-danger " *ngIf="ingredientNumber.touched && ingredientNumber.invalid">
+                <div *ngIf="ingredientNumber.errors.required">Ingrediensnummer krävs</div>
+              </div>
+            </mat-form-field>
+
+
+            <mat-form-field>
+              <label for="vikt" class="mt-4">
+                <h4 class="font-weight-bold" style="font-size: 1em;">
+                  Skriv ingrediensens viktGram </h4>
+              </label>
+              <input required formControlName="ingredientViktGram" type="text" matInput placeholder="Skriv ingrediensens viktGram (standard för 100 gram)"
+                id="vikt">
+              <div class="alert alert-danger " *ngIf="ingredientViktGram.touched && ingredientViktGram.invalid">
+                <div *ngIf="ingredientViktGram.errors.required">Ingredient wheight is required</div>
+              </div>
+            </mat-form-field>
+
+
+
+            <mat-form-field>
+              <label for="Huvudgrupp" class="mt-4">
+                <h4 class="font-weight-bold" style="font-size: 1em;">
+                  Type ingredient's Huvudgrupp </h4>
+              </label>
+              <input required formControlName="ingredientHuvudgrupp" type="text" matInput placeholder="Ingredients Huvudgrupp"
+                id="Huvudgrupp">
+              <div class="alert alert-danger " *ngIf="ingredientHuvudgrupp.touched && ingredientHuvudgrupp.invalid">
+                <div *ngIf="ingredientHuvudgrupp.errors.required">Ingredient Huvudgrupp is required</div>
+              </div>
+            </mat-form-field>
+
+
+            <div class="card" formGroupName="ingredientNsringsvarden">
+              <div class="container d-flex flex-column justify-content-center mt-5">
+                <h4>Du måste skriva minst ett näringsvärde</h4>
+                <mat-form-field class="example-full-width">
+                  <label for="naringsVardeNamn" class="mt-4">
+                    <h4 class="font-weight-bold" style="font-size: 1em;">
+                      Ange näringsvärde namn </h4>
+                  </label>
+                  <input type="text" class="form-control" placeholder="Välj ett ingrediens näringsvärde namn"
+                   formControlName="naringsVardeNamn" aria-label="Number" id="naringsVardeNamn"required
+                    matTooltip="Ange ett näringsvärde namn" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+                    matInput [formControl]="myControl" [matAutocomplete]="auto">
+                  <div class="alert alert-danger " *ngIf="myControl.touched && myControl.invalid">
+                    <div *ngIf="myControl.errors.required">Ingrediens Namn krävs</div>
+                  </div>
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+
+
+                <mat-form-field>
+                  <label for="naringsVarde" class="mt-4">
+                    <h4 class="font-weight-bold" style="font-size: 1em;">nutrition value </h4>
+                  </label>
+                  <input required formControlName="naringsVardeVarde" matInput type="text" matInput placeholder="like 23,05"
+                    id="naringsVarde" pattern="\d\d,\d\d">
+                  <div class="alert alert-danger " *ngIf="naringsVardeVarde.touched && naringsVardeVarde.invalid">
+                    <div *ngIf="naringsVardeVarde.errors.required">nutrition value is required</div>
+                    <div *ngIf="naringsVardeVarde.errors.pattern">not matching the pattern like 22,55</div>
+                  </div>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <label for="enhet" class="mt-4">
+                    <h4 class="font-weight-bold" style="font-size: 1em;">Type unit </h4>
+                  </label>
+                  <input required formControlName="naringsVardeEnhet" matInput type="text" matInput placeholder="like g or ug or mg"
+                    id="enhet">
+                  <div class="alert alert-danger " *ngIf="naringsVardeEnhet.touched && naringsVardeEnhet.invalid">
+                    <div *ngIf="naringsVardeEnhet.errors.required">Unit is required</div>
+
+                  </div>
+                </mat-form-field>
+                <p>*you can add as many nutritional values as needed</p>
+                <button type="button" (click)=" addNNaringsvarde()" [disabled]="!NaringsvardeState"
+                class="btn btn-primary">
+                  Add nutrition value</button>
+                <div class="alert alert-danger" *ngIf="emptyVlue">{{emptyVlue}}</div>
+
+
+              </div>
+            </div>
+
+            <br>
+            <br>
+
+
+            <button (click)="createIngredient()" [disabled]="!( Naringsvarde.length>0 && ingredientName.value
+       && ingredientHuvudgrupp.value && ingredientNumber.value && ingredientHuvudgrupp.value)"
+              type="button" class="btn btn-primary" routerLink="/ingredientAddedSuccess">Add an ingredient</button>
+            <div class="alert alert-danger" *ngIf="emptyVlue2">{{emptyVlue}}</div>
+            <br>
+            <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+    <div class="col-sm-4">
+        <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <div class="naringsvarde">            
+              <h5>tillsats av näringsvärde</h5>
+              <div class="d-flex flex-row">
+                  <div class="p-2"><h6>näringsvärde Namn</h6></div>
+                  <div class="p-2"><h6> näringsvärde Varde </h6> </div>
+                  
+                </div>
+              
+            <ul class="list-unstyled" *ngFor="let naringsvatde of Naringsvarde"  >   
+                    
+             <a  (click)="removedNutritionalValue(naringsvatde)" > <li> <i class="material-icons">delete</i> 
+               {{naringsvatde.Namn}} <span>{{naringsvatde.Varde}}</span>  </li>
+               
+              </a>
+              
+            
+            </ul>
+          </div>
+    </div>
+  </div>
+</div>

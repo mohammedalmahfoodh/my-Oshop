@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class BsNavbarComponent  {
    
   constructor(public auth:AuthService) {    
+    
           }
 
 logout(){

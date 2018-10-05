@@ -12,3 +12,6 @@ a{
     	font-family: 'Playball', cursive;
 }
 p{	font-family: 'Shrikhand', cursive;}
+#pagination{
+	font-family: 'Shrikhand', cursive;background-color: cadetblue;font-size: 25px;
+}
