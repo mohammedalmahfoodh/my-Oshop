@@ -219,6 +219,33 @@ app.get('/ingredients/names', (req, res) => {
 });
 
 
+//####### get Naringsvarde names ######### 
+app.get('/Naringsvarde/names', (req, res) => {
+  // Use connect method to connect to the server  
+  MongoClient.connect(url, function (err, client) {
+    assert.equal(null, err);
+    const db = client.db(dbOshop);
+    db.collection("ingredients").find({}).toArray(function (err, result) {
+      if (err) throw err;
+      ingredients = result.map(obj => new Ingredient(obj))
+      ingredients = ingredients.map(ingr => ingr.Naringsvarden.Naringsvarde)
+      ingredients=ingredients.map(nar=>nar.map(na=>na.Namn))[0]
+      res.json(ingredients)
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
 //########## get a recipe ########################33
 app.get('/recipe/:startOfName', (req, res) => {
   let twoChars = req.params.startOfName.toLowerCase();
